@@ -1,0 +1,7 @@
+C:\Users\l123o\source\repos\5.client\5.server\bin\Debug\5.server.exe.config
+C:\Users\l123o\source\repos\5.client\5.server\bin\Debug\5.server.exe
+C:\Users\l123o\source\repos\5.client\5.server\bin\Debug\5.server.pdb
+C:\Users\l123o\source\repos\5.client\5.server\obj\Debug\5.server.csprojAssemblyReference.cache
+C:\Users\l123o\source\repos\5.client\5.server\obj\Debug\5.server.csproj.CoreCompileInputs.cache
+C:\Users\l123o\source\repos\5.client\5.server\obj\Debug\5.server.exe
+C:\Users\l123o\source\repos\5.client\5.server\obj\Debug\5.server.pdb
