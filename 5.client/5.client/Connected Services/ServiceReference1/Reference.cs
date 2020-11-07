@@ -15,6 +15,18 @@ namespace _5.client.ServiceReference1 {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.IService1")]
     public interface IService1 {
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CountOfDBRows", ReplyAction="http://tempuri.org/IService1/CountOfDBRowsResponse")]
+        void CountOfDBRows(string count);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CountOfDBRows", ReplyAction="http://tempuri.org/IService1/CountOfDBRowsResponse")]
+        System.Threading.Tasks.Task CountOfDBRowsAsync(string count);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/ConnectionInfo", ReplyAction="http://tempuri.org/IService1/ConnectionInfoResponse")]
+        void ConnectionInfo(string name, string port, string localPath, string uri, string scheme);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/ConnectionInfo", ReplyAction="http://tempuri.org/IService1/ConnectionInfoResponse")]
+        System.Threading.Tasks.Task ConnectionInfoAsync(string name, string port, string localPath, string uri, string scheme);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/RecCheck", ReplyAction="http://tempuri.org/IService1/RecCheckResponse")]
         string RecCheck(string id_exp, string id_h, string date, string stay);
         
@@ -71,6 +83,22 @@ namespace _5.client.ServiceReference1 {
         
         public Service1Client(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
+        }
+        
+        public void CountOfDBRows(string count) {
+            base.Channel.CountOfDBRows(count);
+        }
+        
+        public System.Threading.Tasks.Task CountOfDBRowsAsync(string count) {
+            return base.Channel.CountOfDBRowsAsync(count);
+        }
+        
+        public void ConnectionInfo(string name, string port, string localPath, string uri, string scheme) {
+            base.Channel.ConnectionInfo(name, port, localPath, uri, scheme);
+        }
+        
+        public System.Threading.Tasks.Task ConnectionInfoAsync(string name, string port, string localPath, string uri, string scheme) {
+            return base.Channel.ConnectionInfoAsync(name, port, localPath, uri, scheme);
         }
         
         public string RecCheck(string id_exp, string id_h, string date, string stay) {

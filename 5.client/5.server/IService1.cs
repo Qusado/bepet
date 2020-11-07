@@ -13,6 +13,12 @@ namespace _5.server
     public interface IService1
     {
         [OperationContract]
+        void CountOfDBRows(string count);
+
+        [OperationContract]
+        void ConnectionInfo(string name, string port, string localPath, string uri, string scheme);
+
+        [OperationContract]
         string RecCheck(string id_exp, string id_h, string date, string stay);
 
 

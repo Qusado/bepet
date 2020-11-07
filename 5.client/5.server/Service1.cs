@@ -15,6 +15,22 @@ namespace _5.server
         
         String connectionString = "Data Source=gggggggg.mssql.somee.com;Initial Catalog=gggggggg;Persist Security Info=True;User ID=good_job_Oleg_SQLLogin_1;Password=8aoh3a3zmb";
 
+        public void ConnectionInfo(string name, string port, string localPath, string uri, string scheme)
+        {
+            Console.WriteLine();
+            Console.WriteLine("***** Host Info *****");
+            Console.WriteLine($"Name: {name}");
+            Console.WriteLine($"Port: {port}");
+            Console.WriteLine($"LocalPath: {localPath}");
+            Console.WriteLine($"Uri: {uri}");
+            Console.WriteLine($"Scheme: {scheme}");
+            Console.WriteLine("***********************************");
+            Console.WriteLine();
+        }
+
+        public void CountOfDBRows(string count) =>
+            Console.WriteLine($"Количество записей в БД: {count}");
+
 
         public string InsertMethod(string id_exp, string id_h, string date)
         {

@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -13,7 +14,9 @@ namespace _5.client
 {
     public partial class Form1 : Form
     {
-        private ServiceReference1.Service1Client sessionClient;
+        Service1Client sessionClient = new Service1Client("NetTcpBinding_IService1");
+        static Uri address = new Uri("net.tcp://localhost:8739/Design_Time_Addresses/Service1/");
+        NetTcpBinding binding = new NetTcpBinding();
         public Form1()
         {
             InitializeComponent();
@@ -21,6 +24,7 @@ namespace _5.client
 
         public void Table()
         {
+           
             dataGridView1.DataSource = sessionClient.GetData();
             dataGridView1.Columns[0].HeaderText = "ID перемещения";
             dataGridView1.Columns[1].HeaderText = "ID Экспоната";
@@ -36,7 +40,6 @@ namespace _5.client
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var client = new ServiceReference1.Service1Client();
             string id_exp = comboBox1.SelectedValue.ToString();
             string id_h = comboBox2.SelectedValue.ToString();
             string date = dateTimePicker1.Value.ToString("yyyy-MM-dd");
@@ -46,22 +49,24 @@ namespace _5.client
             {
                 MessageBox.Show("Данная дата не доступна");
             }
-            else if(client.RecCheck(id_exp, id_h, date, diffdate).Equals("1"))
+            else if(sessionClient.RecCheck(id_exp, id_h, date, diffdate).Equals("1"))
             { 
                 MessageBox.Show("Такая Запись уже существует!");
             }
             else
             {
-                client.InsertMethod(id_exp, id_h, date);
+                sessionClient.InsertMethod(id_exp, id_h, date);
                 MessageBox.Show("Запись добавлена");
                 this.Table();
+                sessionClient.CountOfDBRows(dataGridView1.Rows.Count.ToString());
             }
 
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            sessionClient = new ServiceReference1.Service1Client();
+            sessionClient.ConnectionInfo(binding.Name, address.Port.ToString(), address.LocalPath,
+                address.ToString(), address.Scheme);
             comboBox1.DataSource = sessionClient.GetExpSelectData();
             comboBox1.DisplayMember = "name_exp";
             comboBox1.ValueMember = "id_exp";

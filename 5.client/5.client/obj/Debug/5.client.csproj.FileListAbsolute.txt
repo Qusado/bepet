@@ -8,3 +8,13 @@ C:\Users\l123o\source\repos\5.client\5.client\obj\Debug\5.client.csproj.CoreComp
 C:\Users\l123o\source\repos\5.client\5.client\obj\Debug\5.client.exe
 C:\Users\l123o\source\repos\5.client\5.client\obj\Debug\5.client.pdb
 C:\Users\l123o\source\repos\5.client\5.client\obj\Debug\_5.client.Form1.resources
+C:\university\bepet\5.client\5.client\bin\Debug\5.client.exe.config
+C:\university\bepet\5.client\5.client\bin\Debug\5.client.exe
+C:\university\bepet\5.client\5.client\bin\Debug\5.client.pdb
+C:\university\bepet\5.client\5.client\obj\Debug\5.client.csprojAssemblyReference.cache
+C:\university\bepet\5.client\5.client\obj\Debug\_5.client.Form1.resources
+C:\university\bepet\5.client\5.client\obj\Debug\_5.client.Properties.Resources.resources
+C:\university\bepet\5.client\5.client\obj\Debug\5.client.csproj.GenerateResource.cache
+C:\university\bepet\5.client\5.client\obj\Debug\5.client.csproj.CoreCompileInputs.cache
+C:\university\bepet\5.client\5.client\obj\Debug\5.client.exe
+C:\university\bepet\5.client\5.client\obj\Debug\5.client.pdb
