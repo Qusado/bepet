@@ -1,0 +1,11 @@
+C:\Users\l123o\source\repos\service7\host\bin\Debug\host.exe.config
+C:\Users\l123o\source\repos\service7\host\bin\Debug\host.exe
+C:\Users\l123o\source\repos\service7\host\bin\Debug\host.pdb
+C:\Users\l123o\source\repos\service7\host\bin\Debug\service7.dll
+C:\Users\l123o\source\repos\service7\host\bin\Debug\service7.pdb
+C:\Users\l123o\source\repos\service7\host\bin\Debug\service7.dll.config
+C:\Users\l123o\source\repos\service7\host\obj\Debug\host.csprojAssemblyReference.cache
+C:\Users\l123o\source\repos\service7\host\obj\Debug\host.csproj.CoreCompileInputs.cache
+C:\Users\l123o\source\repos\service7\host\obj\Debug\host.csproj.CopyComplete
+C:\Users\l123o\source\repos\service7\host\obj\Debug\host.exe
+C:\Users\l123o\source\repos\service7\host\obj\Debug\host.pdb

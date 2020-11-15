@@ -1,0 +1,21 @@
+﻿<Window x:Class="Client.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Client"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded" Closing="Window_Closing">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="188*"/>
+            <ColumnDefinition Width="87*"/>
+            <ColumnDefinition Width="518*"/>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="bConnect" Content="Connect" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="212" Height="43" Click="Button_Click" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="tbMess" HorizontalAlignment="Left" Height="89" Margin="10,321,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="774" Grid.ColumnSpan="3" KeyDown="tbMess_KeyDown"/>
+        <TextBox x:Name="tbUserName" HorizontalAlignment="Left" Height="43" Margin="39,10,0,0" TextWrapping="Wrap" Text="User name" VerticalAlignment="Top" Width="557" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <ListBox x:Name ="lbChat" HorizontalAlignment="Left" Height="258" Margin="10,58,0,0" VerticalAlignment="Top" Width="774" SelectionChanged="lbChat_SelectionChanged" Grid.ColumnSpan="3"/>
+
+    </Grid>
+</Window>

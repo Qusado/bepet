@@ -1,0 +1,7 @@
+C:\Users\l123o\source\repos\service7\service7\bin\Debug\service7.dll.config
+C:\Users\l123o\source\repos\service7\service7\bin\Debug\service7.dll
+C:\Users\l123o\source\repos\service7\service7\bin\Debug\service7.pdb
+C:\Users\l123o\source\repos\service7\service7\obj\Debug\service7.csprojAssemblyReference.cache
+C:\Users\l123o\source\repos\service7\service7\obj\Debug\service7.csproj.CoreCompileInputs.cache
+C:\Users\l123o\source\repos\service7\service7\obj\Debug\service7.dll
+C:\Users\l123o\source\repos\service7\service7\obj\Debug\service7.pdb
