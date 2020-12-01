@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="qqq1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="expanate">
+    <Key>
+      <PropertyRef Name="id_exp" />
+    </Key>
+    <Property Name="id_exp" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name_exp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="autor_exp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="transfers" Relationship="Self.FK_transfers_expanate" FromRole="expanate" ToRole="transfers" />
+  </EntityType>
+  <EntityType Name="hall">
+    <Key>
+      <PropertyRef Name="id_h" />
+    </Key>
+    <Property Name="id_h" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name_h" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="space_h" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="transfers" Relationship="Self.FK_transfers_hall" FromRole="hall" ToRole="transfers" />
+  </EntityType>
+  <EntityType Name="transfers">
+    <Key>
+      <PropertyRef Name="id_tr" />
+    </Key>
+    <Property Name="id_tr" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_exp_fk" Type="Int32" Nullable="false" />
+    <Property Name="id_h_fk" Type="Int32" Nullable="false" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="stay" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="expanate" Relationship="Self.FK_transfers_expanate" FromRole="transfers" ToRole="expanate" />
+    <NavigationProperty Name="hall" Relationship="Self.FK_transfers_hall" FromRole="transfers" ToRole="hall" />
+  </EntityType>
+  <Association Name="FK_transfers_expanate">
+    <End Role="expanate" Type="Self.expanate" Multiplicity="1" />
+    <End Role="transfers" Type="Self.transfers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="expanate">
+        <PropertyRef Name="id_exp" />
+      </Principal>
+      <Dependent Role="transfers">
+        <PropertyRef Name="id_exp_fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_transfers_hall">
+    <End Role="hall" Type="Self.hall" Multiplicity="1" />
+    <End Role="transfers" Type="Self.transfers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="hall">
+        <PropertyRef Name="id_h" />
+      </Principal>
+      <Dependent Role="transfers">
+        <PropertyRef Name="id_h_fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="qqq1Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="expanate" EntityType="Self.expanate" />
+    <EntitySet Name="hall" EntityType="Self.hall" />
+    <EntitySet Name="transfers" EntityType="Self.transfers" />
+    <AssociationSet Name="FK_transfers_expanate" Association="Self.FK_transfers_expanate">
+      <End Role="expanate" EntitySet="expanate" />
+      <End Role="transfers" EntitySet="transfers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_transfers_hall" Association="Self.FK_transfers_hall">
+      <End Role="hall" EntitySet="hall" />
+      <End Role="transfers" EntitySet="transfers" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
