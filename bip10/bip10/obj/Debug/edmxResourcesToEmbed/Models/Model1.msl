@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище ggggggggModelContainer" CdmEntityContainer="ggggggggEntities">
+    <EntitySetMapping Name="expanate">
+      <EntityTypeMapping TypeName="ggggggggModel.expanate">
+        <MappingFragment StoreEntitySet="expanate">
+          <ScalarProperty Name="id_exp" ColumnName="id_exp" />
+          <ScalarProperty Name="name_exp" ColumnName="name_exp" />
+          <ScalarProperty Name="autor_exp" ColumnName="autor_exp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hall">
+      <EntityTypeMapping TypeName="ggggggggModel.hall">
+        <MappingFragment StoreEntitySet="hall">
+          <ScalarProperty Name="id_h" ColumnName="id_h" />
+          <ScalarProperty Name="name_h" ColumnName="name_h" />
+          <ScalarProperty Name="space_h" ColumnName="space_h" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="transfers">
+      <EntityTypeMapping TypeName="ggggggggModel.transfers">
+        <MappingFragment StoreEntitySet="transfers">
+          <ScalarProperty Name="id_tr" ColumnName="id_tr" />
+          <ScalarProperty Name="id_exp_fk" ColumnName="id_exp_fk" />
+          <ScalarProperty Name="id_h_fk" ColumnName="id_h_fk" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="stay" ColumnName="stay" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

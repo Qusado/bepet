@@ -1,0 +1,97 @@
+﻿@model IEnumerable<bip10.Models.expanate>
+@using Microsoft.AspNet.Identity
+
+<table class="table" id="myTable">
+    <tr>
+        <th>ID</th>
+        <th>Название </th>
+        <th>Автор</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td id="id_td">
+                @item.id_exp
+            </td>
+            <td id="name_td">
+
+                @item.name_exp
+            </td>
+            <td id="author_td">
+                @item.autor_exp
+            </td>
+
+        </tr>
+    }
+</table>
+@section scripts{
+    <script>
+        $("#myTable tr").click(function ()
+        {
+            var id_text = $(this).children('#id_td').text();  
+            var name_text = $(this).children("#name_td").text();
+            var author_text = $(this).children("#author_td").text();
+            $("#id_e").val(id_text);
+            $("#name_e").val(name_text);
+            $("#autor_e").val(author_text);
+        });
+    </script>
+}
+@if (Request.IsAuthenticated)
+{
+<div class="row">
+    <div class="col-xs-6">
+        @using (Html.BeginForm("Exp_Add", "Change", FormMethod.Post, new { @class = "mt-3" }))
+        {
+
+            <div class="form-group row">
+                <label for="name" class="col-sm-3">Экспонат</label>
+                <div class="col-sm-6">
+                    <input class="" type="text" name="name_add" required id="name_add" value="">
+                </div>
+            </div>
+
+            <div class="form-group row ">
+                <label for="name" class="col-sm-3">Автор</label>
+                <div class="col-sm-6">
+                    <input class="" type="text" name="autor_add" required id="autor_add" value="">
+                </div>
+            </div>
+
+            <div class="form-group row justify-content-center">
+                <button class="col-sm-2 btn btn-primary">Добавить</button>
+            </div>
+        }
+    </div>
+    <div class="col-xs-6">
+        @using (Html.BeginForm("Exp", "Change", FormMethod.Post, new { @class = "mt-3" }))
+        {
+            <div class="form-group row">
+                <label for="id" class="col-sm-3">Id</label>
+                <div class="col-sm-6">
+                    <input class="" readonly="true" type="text" readonly="true" name="id_e" id="id_e" value="" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="name" class="col-sm-3">Экспонат</label>
+                <div class="col-sm-6">
+                    <input class="" type="text" name="name_e" required id="name_e" value="">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="name" class="col-sm-3">Автор</label>
+                <div class="col-sm-6">
+                    <input class="" type="text" name="autor_e" required id="autor_e" value="">
+                </div>
+            </div>
+
+            <div class="form-group row justify-content-center">
+                <button class="col-sm-2 btn btn-primary" value="Edit">Изменить</button>
+            </div>
+        }
+    </div>
+</div>
+}
