@@ -1,0 +1,189 @@
+﻿<div id="table" class="row"></div>
+<div id="AddBlock">
+
+    <div class=" form-group row">
+        <label for="name" class="col-sm-3 col-form-label">Экспонат</label>
+        <select class = "form-control" id="selectE"></select>
+    </div>
+
+    <div class="form-group row">
+        <label for="name" class="col-sm-3 col-form-label">Зал</label>
+        <select class = "form-control" id="selectH"></select>
+    </div>
+
+    <div class="form-group row">
+        <label for="name" class="col-sm-3 col-form-label">Дата перемещения</label>
+        <div class="col-sm-6">
+            <input class="form-control" type="date" name="date_add" id="date_add" value="2020-08-15">
+        </div>
+    </div>
+
+    <div class="col">
+        <button id="Add" class="btn btn-info">Добавить</button>
+    </div>
+</div>
+@section scripts{
+    <script src="http://www.datejs.com/build/date.js" type="text/javascript"></script>
+    <script>
+        $(document).ready(function () {
+            GetAll();
+            GetAllExps();
+            GetAllHalls();
+
+            $("#Add").click(function (event) {
+                event.preventDefault();
+                Add();
+            });
+
+        });
+
+        function CreateSelectH(array) {
+            $.each(array, function (key, item) {
+                $('#selectH').append('<option value="' + item.id_h + '">' + item.name_h + '</option>');
+            });
+        }
+        function CreateSelectE(array) {
+            $.each(array, function (key, item) {
+                $('#selectE').append('<option value="' + item.id_exp + '">' + item.name_exp + '</option>');
+            });
+        }
+
+        function GetAllHalls() {
+            $.ajax({
+                url: '/api/GetHalls',
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    CreateSelectH(data);
+                },
+                error: function (x, y, z) {
+                    alert(x + '\n' + y + '\n' + z);
+                }
+            });
+        }
+        function GetAllExps() {
+            $.ajax({
+                url: '/api/GetExps',
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    CreateSelectE(data);
+                },
+                error: function (x, y, z) {
+                    alert(x + '\n' + y + '\n' + z);
+                }
+            });
+        }
+
+        function GetAll() {
+            $.ajax({
+                url: '/api/GetTransfers',
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    FillTable(data);
+                },
+                error: function (x, y, z) {
+                    alert(x + '\n' + y + '\n' + z);
+                }
+            });
+        }
+
+        function Add() {
+            // получаем значения для добавляемой книги
+            
+            var tr = {
+                id_exp_fk : $('#selectE').val(),
+                id_h_fk: $('#selectH').val(),
+                date: $('#date_add').val()
+            };
+
+            $.ajax({
+                url: '/api/AddTr',
+                type: 'POST',
+                data: JSON.stringify(tr),
+                contentType: "application/json;charset=utf-8",
+                success: function (data) {
+                    GetAll();
+                },
+                error: function (x, y, z) {
+                    alert(x + '\n' + y + '\n' + z);
+                }
+            });
+        }
+        // Удаление книги
+        function Delete(id) {
+
+            $.ajax({
+                url: '/api/DeleteTr/' + id,
+                type: 'DELETE',
+                contentType: "application/json;charset=utf-8",
+                success: function (data) {
+                    GetAll();
+                },
+                error: function (x, y, z) {
+                    alert(x + '\n' + y + '\n' + z);
+                }
+            });
+        }
+
+        function DeleteItem(el) {
+            // получаем id удаляемого объекта
+            var id = $(el).attr('data-item');
+            Delete(id);
+        }
+
+        function getNameH(id) {
+            var title =
+                $.ajax({
+                    url: '/api/Hall/' + id,
+                    type: 'GET',
+                    contentType: "json",
+                    async: false,
+                    success: function (data) {
+                        // console.log(data);
+                        title = data;
+                    },
+                    error: function (x, y, z) {
+                        alert(x + '\n' + y + '\n' + z);
+                    }
+                });
+            return title.responseText;
+        }
+
+        function getNameExp(id) {
+            var title =
+                $.ajax({
+                    url: '/api/Exp/' + id,
+                    type: 'GET',
+                    contentType: "json",
+                    async: false,
+                    success: function (data) {
+                        // console.log(data);
+                        title = data;
+                    },
+                    error: function (x, y, z) {
+                        alert(x + '\n' + y + '\n' + z);
+                    }
+                });
+            return title.responseText;
+        }
+
+        function FillTable(data) {
+            var strResult =
+                "<table class='table'><th></th><th>ID</th><th>Экспонат</th><th>зал</th><th>дата</th><th>дней</th>";
+            $.each(data, function (index, item) {
+                var day = new Date(item.stay);
+                var exp = getNameExp(item.id_exp_fk);
+                var h = getNameH(item.id_h_fk);
+                strResult += " <tr><td><a id='delItem' data-item='" + item.id_tr + "' onclick='DeleteItem(this);' >Удалить</a></td>" +
+                    " <td>" + item.id_tr + "</td><td> " + exp + "</td><td>" +
+                    h + "</td><td>" + day.toDateString() + "</td><td>" + item.stay + "</td></tr>";
+            });
+            strResult += "</table>";
+            $("#table").html(strResult);
+
+        }
+    </script>
+}
+

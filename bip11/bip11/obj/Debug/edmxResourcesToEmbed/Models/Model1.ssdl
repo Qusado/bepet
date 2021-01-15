@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище ggggggggModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="expanate">
+    <Key>
+      <PropertyRef Name="id_exp" />
+    </Key>
+    <Property Name="id_exp" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name_exp" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="autor_exp" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="hall">
+    <Key>
+      <PropertyRef Name="id_h" />
+    </Key>
+    <Property Name="id_h" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name_h" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="space_h" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="transfers">
+    <Key>
+      <PropertyRef Name="id_tr" />
+    </Key>
+    <Property Name="id_tr" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_exp_fk" Type="int" Nullable="false" />
+    <Property Name="id_h_fk" Type="int" Nullable="false" />
+    <Property Name="date" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="stay" Type="int" StoreGeneratedPattern="Computed" />
+  </EntityType>
+  <Association Name="FK_transfers_expanate">
+    <End Role="expanate" Type="Self.expanate" Multiplicity="1" />
+    <End Role="transfers" Type="Self.transfers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="expanate">
+        <PropertyRef Name="id_exp" />
+      </Principal>
+      <Dependent Role="transfers">
+        <PropertyRef Name="id_exp_fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_transfers_hall">
+    <End Role="hall" Type="Self.hall" Multiplicity="1" />
+    <End Role="transfers" Type="Self.transfers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="hall">
+        <PropertyRef Name="id_h" />
+      </Principal>
+      <Dependent Role="transfers">
+        <PropertyRef Name="id_h_fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище ggggggggModelContainer">
+    <EntitySet Name="expanate" EntityType="Self.expanate" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="hall" EntityType="Self.hall" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="transfers" EntityType="Self.transfers" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_transfers_expanate" Association="Self.FK_transfers_expanate">
+      <End Role="expanate" EntitySet="expanate" />
+      <End Role="transfers" EntitySet="transfers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_transfers_hall" Association="Self.FK_transfers_hall">
+      <End Role="hall" EntitySet="hall" />
+      <End Role="transfers" EntitySet="transfers" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
